@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Project Page</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light grey background */
+        }
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.open .modal-content {
+            transform: translateY(0);
+        }
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #4a5568;
+        }
+        .code-block {
+            background-color: #e2e8f0; /* Light grey for code block */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 0.875rem;
+            white-space: pre-wrap; /* Preserve whitespace and wrap lines */
+            word-break: break-all; /* Break long words */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+            display: none; /* Hidden by default */
+        }
+        .code-block.show {
+            display: block; /* Show when 'show' class is added */
+        }
+        .toggle-code-button {
+            background-color: #60a5fa; /* Blue-400 */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            transition: background-color 0.2s ease;
+        }
+        .toggle-code-button:hover {
+            background-color: #3b82f6; /* Blue-500 */
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8 lg:p-10">
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-xl p-6 sm:p-8 md:p-10 lg:p-12">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <p class="text-xl sm:text-2xl font-medium text-gray-800 mb-2">STUDENT NAME : <span class="font-normal text-gray-600">ABISHEK PARAKKAL</span></p>
+            <p class="text-xl sm:text-2xl font-medium text-gray-800 mb-2">CURRENT DATE : <span class="font-normal text-gray-600">June 13, 2025</span></p>
+            <p class="text-xl sm:text-2xl font-medium text-gray-800">SUBJECT NAME : <span class="font-normal text-gray-600">Web Development</span></p>
+        </div>
+
+        <!-- Information About Me Section -->
+        <div class="bg-blue-700 text-white p-3 sm:p-4 rounded-lg mb-8 shadow-md">
+            <h2 class="text-lg sm:text-xl font-semibold">INFORMATION ABOUT ME :I'M A STUDENT STUDYING BACHELORS IN INFORMATION TECHNOLOGY</h2>
+        </div>
+
+        <!-- Task Details Section -->
+        <div class="mb-10">
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Task Details :</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Task Buttons - Each with a unique data-task-id -->
+                <button class="task-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1" data-task-id="1">
+                    Task 1
+                </button>
+                <button class="task-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1" data-task-id="2">
+                    Task 2
+                </button>
+                <button class="task-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1" data-task-id="3">
+                    Task 3
+                </button>
+                <button class="task-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1" data-task-id="4">
+                    Task 4
+                </button>
+                <button class="task-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1" data-task-id="5">
+                    Task 5
+                </button>
+                <button class="task-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1" data-task-id="6">
+                    Task 6
+                </button>
+                <button class="task-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1" data-task-id="7">
+                    Task 7
+                </button>
+                <button class="task-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1" data-task-id="8">
+                    Task 8
+                </button>
+                <button class="task-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1" data-task-id="9">
+                    Task 9
+                </button>
+                <button class="task-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1" data-task-id="10">
+                    Task 10
+                </button>
+            </div>
+        </div>
+
+        <!-- Mini Project Title Section -->
+        <div class="mb-10">
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Mini Project Report</h3>
+            <p class="text-gray-700 mb-2">Project Title: <span class="font-normal text-gray-600">EcoShop – A Sustainable Online Marketplace</span></p>
+            <p class="text-gray-700 mb-2">Student Name: <span class="font-normal text-gray-600">Abishek Parakkal</span></p>
+            <p class="text-gray-700 mb-4">Course: <span class="font-normal text-gray-600">Web Technology</span></p>
+            <p class="text-gray-700 mb-6">Semester: <span class="font-normal text-gray-600">1</span></p>
+
+            <h4 class="text-md sm:text-lg font-semibold text-gray-800 mb-2">1) Problem Statement:</h4>
+            <p class="text-gray-700 mb-4">The EcoShop project addresses the need to connect eco-conscious consumers with environmentally friendly products and to promote green practices and sustainable living.</p>
+
+            <h4 class="text-md sm:text-lg font-semibold text-gray-800 mb-2">2) Objective:</h4>
+            <p class="text-gray-700 mb-4">The objective of EcoShop is to create a sustainable online marketplace. Its purpose is to allow eco-conscious consumers to easily discover, explore, and purchase environmentally friendly products, while also supporting local eco-vendors.</p>
+
+            <h4 class="text-md sm:text-lg font-semibold text-gray-800 mb-2">3) Goal:</h4>
+            <p class="text-gray-700 mb-4">The end goals and intended outcomes of EcoShop include providing a platform that successfully promotes green practices, supports local eco-vendors, and is designed to grow and evolve into a more dynamic marketplace in the future.</p>
+
+            <h4 class="text-md sm:text-lg font-semibold text-gray-800 mb-2">4) Result/Output:</h4>
+            <p class="text-gray-700 mb-2">The current and expected results include a functional website with:</p>
+            <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4 ml-4">
+                <li>An easy-to-use Navigation Menu.</li>
+                <li>A captivating Hero Section with JavaScript animations.</li>
+                <li>A Product Display Page (currently a placeholder for eco-products).</li>
+                <li>A simple Contact Form for user queries.</li>
+                <li>A Responsive Design ensuring mobile-friendliness.</li>
+                <li>Future functionalities planned include AI product suggestions, a carbon footprint calculator, vendor sustainability ratings, and a dedicated Vendor Portal.</li>
+            </ul>
+
+            <h4 class="text-md sm:text-lg font-semibold text-gray-800 mb-2">5) Technology Used:</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4 ml-4">
+                <li>Frontend: HTML5, Tailwind CSS</li>
+                <li>Scripting: JavaScript (for basic animations and interactivity)</li>
+                <li>Icons: Flaticon</li>
+                <li>Deployment: Netlify</li>
+                <li>Future Expansion/Design Ready: React, MongoDB</li>
+            </ul>
+
+            <h4 class="text-md sm:text-lg font-semibold text-gray-800 mb-2">6) User Audience:</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4 ml-4">
+                <li>Eco-conscious consumers looking for environmentally friendly products.</li>
+                <li>Local eco-vendors who want to list and sell their green products.</li>
+            </ul>
+
+            <h4 class="text-md sm:text-lg font-semibold text-gray-800 mb-2">7) Impact on Society:</h4>
+            <p class="text-gray-700 mb-4">EcoShop aims to benefit society by promoting eco-conscious living and green practices. It connects individuals with verified sellers of environmentally friendly products, which helps foster sustainability and supports a more socially responsible approach to commerce. The project also contributes to the student's learning about clean design, modular coding, and integrating sustainability into web development.</p>
+        </div>
+
+        <!-- Screenshots Section -->
+        <div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">SCREENSHOTS</h2>
+            <!-- You can add image tags here for screenshots -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Placeholder for a screenshot -->
+                <div class="bg-gray-200 rounded-lg p-6 flex items-center justify-center h-48 sm:h-64 text-gray-500 text-center">
+                    <img src="https://placehold.co/400x250/E2E8F0/A0AEC0?text=Screenshot+1+Placeholder" alt="Screenshot Placeholder 1" class="max-w-full h-auto rounded-lg shadow-md">
+                </div>
+                <!-- Placeholder for another screenshot -->
+                <div class="bg-gray-200 rounded-lg p-6 flex items-center justify-center h-48 sm:h-64 text-gray-500 text-center">
+                    <img src="https://placehold.co/400x250/E2E8F0/A0AEC0?text=Screenshot+2+Placeholder" alt="Screenshot Placeholder 2" class="max-w-full h-auto rounded-lg shadow-md">
+                </div>
+                <!-- Adding a new placeholder for the third screenshot -->
+                <div class="bg-gray-200 rounded-lg p-6 flex items-center justify-center h-48 sm:h-64 text-gray-500 text-center">
+                    <img src="https://placehold.co/400x250/E2E8F0/A0AEC0?text=Screenshot+3+Placeholder" alt="Screenshot Placeholder 3" class="max-w-full h-auto rounded-lg shadow-md">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Modal Structure -->
+    <div id="taskModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-button" id="closeModal">&times;</button>
+            <h3 id="modalTaskTitle" class="text-xl font-semibold text-gray-900 mb-4"></h3>
+            <p id="modalTaskDescription" class="text-gray-700 mb-6"></p>
+
+            <div id="modalTaskOutput" class="mt-4 p-3 bg-green-50 rounded-lg text-green-800">
+                Output: <span id="modalTaskOutputContent"></span>
+            </div>
+
+            <div id="modalTaskInput" class="mt-4 hidden">
+                <label for="taskInput" class="block text-gray-700 text-sm font-bold mb-2">Enter value(s):</label>
+                <input type="text" id="taskInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2">
+                <button id="runTaskButton" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-md">Run Task</button>
+            </div>
+            
+            <button id="toggleCodeViewButton" class="toggle-code-button">Toggle Code View</button>
+            <pre id="modalTaskCode" class="code-block"></pre>
+        </div>
+    </div>
+
+    <script>
+        // --- Task Functions (Simplified for student understanding) ---
+
+        // Task 1: Basic Calculator Function
+        function runTask1(inputValue) {
+            const parts = inputValue.split(',');
+            if (parts.length === 3) {
+                const num1 = parseFloat(parts[0].trim());
+                const num2 = parseFloat(parts[1].trim());
+                const operation = parts[2].trim();
+                let result;
+                switch (operation) {
+                    case 'add': result = num1 + num2; break;
+                    case 'subtract': result = num1 - num2; break;
+                    case 'multiply': result = num1 * num2; break;
+                    case 'divide':
+                        result = num2 !== 0 ? num1 / num2 : "Cannot divide by zero!";
+                        break;
+                    default: result = "Invalid operation!";
+                }
+                return result;
+            } else {
+                return "Please enter three comma-separated values (num1, num2, operation).";
+            }
+        }
+
+        // Task 2: Work with Arrays (Storage)
+        function runTask2() {
+            let fruits = ["Apple", "Banana", "Cherry"];
+            let output = "Original array: " + JSON.stringify(fruits);
+            fruits.push("Date");
+            output += "\\nAfter adding 'Date': " + JSON.stringify(fruits);
+            let removedFruit = fruits.pop();
+            output += "\\nRemoved: " + removedFruit + ", New array: " + JSON.stringify(fruits);
+            output += "\\nFirst fruit: " + fruits[0];
+            output += "\\nIndex of 'Banana': " + fruits.indexOf("Banana");
+            return output;
+        }
+
+        // Task 3: Apply Map Function
+        function runTask3() {
+            let numbers = [1, 2, 3, 4, 5];
+            let doubledNumbers = numbers.map(function(number) {
+                return number * 2;
+            });
+            return "Original numbers: " + JSON.stringify(numbers) + "\\nDoubled numbers: " + JSON.stringify(doubledNumbers);
+        }
+
+        // Task 4: Find 10th Character from String
+        function runTask4(inputValue) {
+            if (inputValue.length >= 10) {
+                return "The 10th character is: '" + inputValue.charAt(9) + "'"; // 0-indexed, so 9 is the 10th character
+            } else {
+                return "String is too short to find the 10th character.";
+            }
+        }
+
+        // Task 5: Find Last Element from Array
+        function runTask5(inputValue) {
+            try {
+                const arr = JSON.parse(inputValue); // Assume input is a JSON string of an array
+                if (Array.isArray(arr) && arr.length > 0) {
+                    return "The last element is: " + JSON.stringify(arr[arr.length - 1]);
+                } else {
+                    return "Input is not a valid non-empty array.";
+                }
+            } catch (e) {
+                return "Invalid array format. Please enter as JSON, e.g., [1,2,3] or [\"a\",\"b\"].";
+            }
+        }
+
+        // Task 6: 10-Digit Text Field Validation
+        function runTask6(inputValue) {
+            const regex = /^\\d{10}$/; // Matches exactly 10 digits
+            if (regex.test(inputValue)) {
+                return "Valid 10-digit number.";
+            } else {
+                return "Invalid input. Please enter exactly 10 digits.";
+            }
+        }
+
+        // Task 7: Specific Words & Repeated Characters
+        function runTask7(wordsInput, targetWordInput) {
+            try {
+                const words = JSON.parse(wordsInput);
+                if (!Array.isArray(words)) {
+                    return "Invalid array format for words. Please enter as JSON, e.g., [\"apple\", \"banana\"].";
+                }
+
+                const targetWord = targetWordInput.toLowerCase();
+                let wordFound = false;
+                let charCounts = {};
+
+                words.forEach(word => {
+                    if (word.toLowerCase() === targetWord) {
+                        wordFound = true;
+                    }
+                    for (let char of word.toLowerCase()) {
+                        charCounts[char] = (charCounts[char] || 0) + 1;
+                    }
+                });
+
+                let result = `Target word "${targetWord}" ${wordFound ? 'was found' : 'was NOT found'}.\\n\\nCharacter counts:\\n`;
+                for (const char in charCounts) {
+                    if (charCounts[char] > 1) {
+                        result += `${char}: ${charCounts[char]} times\\n`;
+                    }
+                }
+                return result;
+
+            } catch (e) {
+                return "Invalid input. Please ensure words are a JSON array and target word is a string (e.g., [\"word1\",\"word2\"];target).";
+            }
+        }
+
+        // Task 8: Number of Vowels
+        function runTask8(inputValue) {
+            const vowels = 'aeiouAEIOU';
+            let count = 0;
+            for (let char of inputValue) {
+                if (vowels.includes(char)) {
+                    count++;
+                }
+            }
+            return `Number of vowels: ${count}`;
+        }
+
+        // Task 9: Work with Arrays (More Operations)
+        function runTask9() {
+            let numbers = [5, 2, 8, 1, 9];
+            let output = "Original numbers: " + JSON.stringify(numbers);
+            numbers.sort((a, b) => a - b);
+            output += "\\nSorted numbers (ascending): " + JSON.stringify(numbers);
+            let filteredNumbers = numbers.filter(number => number > 3);
+            output += "\\nNumbers greater than 3: " + JSON.stringify(filteredNumbers);
+            output += "\\nDoes array include 8? " + numbers.includes(8);
+            return output;
+        }
+
+        // Task 10: Apply Map Function (Strings)
+        function runTask10() {
+            let words = ["hello", "world", "javascript"];
+            let capitalizedWords = words.map(word => {
+                return word.charAt(0).toUpperCase() + word.slice(1);
+            });
+            return "Original words: " + JSON.stringify(words) + "\\nCapitalized words: " + JSON.stringify(capitalizedWords);
+        }
+
+        // --- Task Data Configuration ---
+        const tasks = [
+            { id: 1, title: "Basic Calculator Function", description: "Write a function that takes two numbers as arguments and returns their sum, difference, multiplication and division as per user choice.", func: runTask1, codeString: runTask1.toString() },
+            { id: 2, title: "Work with Arrays (Storage)", description: "Work with arrays in JavaScript to store and manage collections of data.", func: runTask2, codeString: runTask2.toString() },
+            { id: 3, title: "Apply Map Function", description: "Apply the map function to double each element in an array.", func: runTask3, codeString: runTask3.toString() },
+            { id: 4, title: "Find 10th Character from String", description: "Create a JS program that finds the 10th character from an entered string.", func: runTask4, codeString: runTask4.toString() },
+            { id: 5, title: "Find Last Element from Array", description: "Create a JS program to find the last element from a given array.", func: runTask5, codeString: runTask5.toString() },
+            { id: 6, title: "10-Digit Text Field Validation", description: "Create a program that allows only 10 digits in a text field.", func: runTask6, codeString: runTask6.toString() },
+            { id: 7, title: "Specific Words & Repeated Characters", description: "Program to find specific words in an array and find the repeated characters. (array and word should be entered from user side)", func: runTask7, codeString: runTask7.toString() },
+            { id: 8, title: "Number of Vowels", description: "Program to find the number of vowels in an entered string of characters.", func: runTask8, codeString: runTask8.toString() },
+            { id: 9, title: "Work with Arrays (More Operations)", description: "Work with arrays in JavaScript to store and manage collections of data. (This is similar to Task 2, focusing on sorting and filtering).", func: runTask9, codeString: runTask9.toString() },
+            { id: 10, title: "Apply Map Function (Strings)", description: "Apply the map function to transform elements in an array (e.g., capitalize strings). (This is similar to Task 3, but with strings).", func: runTask10, codeString: runTask10.toString() }
+        ];
+
+        // Get DOM elements
+        const taskButtons = document.querySelectorAll('.task-button');
+        const taskModal = document.getElementById('taskModal');
+        const closeModalButton = document.getElementById('closeModal');
+        const modalTaskTitle = document.getElementById('modalTaskTitle');
+        const modalTaskDescription = document.getElementById('modalTaskDescription');
+        const modalTaskCode = document.getElementById('modalTaskCode');
+        const modalTaskOutput = document.getElementById('modalTaskOutput');
+        const modalTaskOutputContent = document.getElementById('modalTaskOutputContent');
+        const modalTaskInput = document.getElementById('modalTaskInput');
+        const taskInput = document.getElementById('taskInput');
+        const runTaskButton = document.getElementById('runTaskButton');
+        const toggleCodeViewButton = document.getElementById('toggleCodeViewButton');
+
+        let currentTaskId = null; // To keep track of which task is open
+
+        // Function to execute a task's code and display output
+        function executeTaskCode(taskId, inputValue = '') {
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+
+            let output = '';
+            try {
+                if (taskId === 1 || taskId === 4 || taskId === 5 || taskId === 6 || taskId === 8) {
+                    output = task.func(inputValue); // Call the task function directly with inputValue
+                } else if (taskId === 7) {
+                    const parts = inputValue.split(';');
+                    if (parts.length === 2) {
+                        output = task.func(parts[0].trim(), parts[1].trim()); // Call with two arguments
+                    } else {
+                        output = "Please enter words as '[\"word1\",\"word2\"];target_word'";
+                    }
+                } else { // Tasks 2, 3, 9, 10 (no explicit user input needed for initial run)
+                    output = task.func(); // Call the function without arguments
+                }
+            } catch (e) {
+                output = `Error running task: ${e.message}`;
+                console.error("Error executing task:", e);
+            }
+            modalTaskOutputContent.textContent = output;
+            modalTaskOutput.classList.remove('hidden');
+        }
+
+        // Function to open the modal
+        function openModal(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (task) {
+                modalTaskTitle.textContent = `Task ${task.id}: ${task.title}`;
+                modalTaskDescription.textContent = task.description;
+                modalTaskCode.textContent = task.codeString; // Display the string representation of the function for code view
+
+                // Reset and hide code/input areas
+                modalTaskOutput.classList.remove('hidden'); // Show output by default
+                modalTaskOutputContent.textContent = ''; // Clear previous output
+                modalTaskInput.classList.add('hidden'); // Hide input by default
+                taskInput.value = ''; // Clear input field
+                modalTaskCode.classList.remove('show'); // Hide code by default
+
+                currentTaskId = taskId; // Set current task ID
+
+                // Determine if input field is needed
+                if (taskId === 1 || taskId === 4 || taskId === 5 || taskId === 6 || taskId === 7 || taskId === 8) {
+                    modalTaskInput.classList.remove('hidden'); // Show input
+                    modalTaskOutputContent.textContent = "Enter input and click 'Run Task'."; // Prompt for input
+                } else {
+                    // For tasks that don't need explicit input, run immediately
+                    executeTaskCode(taskId);
+                }
+
+                taskModal.classList.add('open');
+            }
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            taskModal.classList.remove('open');
+            currentTaskId = null; // Clear current task ID
+        }
+
+        // Add event listeners to task buttons
+        taskButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const taskId = parseInt(event.currentTarget.dataset.taskId);
+                openModal(taskId);
+            });
+        });
+
+        // Add event listener to close button
+        closeModalButton.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside
+        taskModal.addEventListener('click', (event) => {
+            if (event.target === taskModal) {
+                closeModal();
+            }
+        });
+
+        // Run Task button logic
+        runTaskButton.addEventListener('click', () => {
+            executeTaskCode(currentTaskId, taskInput.value);
+        });
+
+        // Toggle Code View button logic
+        toggleCodeViewButton.addEventListener('click', () => {
+            modalTaskCode.classList.toggle('show');
+        });
+
+    </script>
+</body>
+</html>
